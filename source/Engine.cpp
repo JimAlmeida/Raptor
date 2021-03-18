@@ -229,7 +229,7 @@ void Engine::server_emodule() {
 		std::cout << "Sending Raptor Data Pack#" << pack << " to UNKSO Server" << '\n';
 		auto r = cpr::Post(cpr::Url{ "http://unkso.michaeljamesbondparsons.com/stats" },
 			cpr::Body{ data.dump() },
-			cpr::Header{ { "content-type", "application/json" },{ "Authorization","Bearer 3C2B19E2946893CBE1AA14A7023867DAFDA0D4F1EEA9D4FF9C54EB4D09074C2B" } });
+			cpr::Header{ { "content-type", "application/json" },{ "Authorization","REDACTED BEARER TOKEN" } });
 		if (r.status_code == 200) { std::cout << "Data has been exported successfully!" << '\n'; }
 		else {
 			std::cout << "Something went wrong when exporting the data. Status Code: " << r.status_code << '\n';
@@ -239,7 +239,7 @@ void Engine::server_emodule() {
 				if (ans == "Y" || ans == "y") {
 					auto rx = cpr::Post(cpr::Url{ "http://unkso.michaeljamesbondparsons.com/stats" },
 						cpr::Body{ data.dump() },
-						cpr::Header{ { "content-type", "application/json" },{ "Authorization","Bearer 3C2B19E2946893CBE1AA14A7023867DAFDA0D4F1EEA9D4FF9C54EB4D09074C2B" } });
+						cpr::Header{ { "content-type", "application/json" },{ "Authorization","REDACTED BEARER TOKEN" } });
 					if (rx.status_code == 200) { std::cout << "Data has been exported successfully!" << '\n'; break; }
 					else std::cout << "Something went wrong when exporting the data. Status Code: " << r.status_code << '\n';
 				}
@@ -251,7 +251,7 @@ void Engine::server_emodule() {
 	std::cout << "Sending Raptor Data Remainder Pack to UNKSO Server" << '\n';
 	auto r = cpr::Post(cpr::Url{ "http://unkso.michaeljamesbondparsons.com/stats" },
 		cpr::Body{ data.dump() },
-		cpr::Header{ { "content-type", "application/json" },{ "Authorization","Bearer 3C2B19E2946893CBE1AA14A7023867DAFDA0D4F1EEA9D4FF9C54EB4D09074C2B" } });
+		cpr::Header{ { "content-type", "application/json" },{ "Authorization","REDACTED BEARER TOKEN" } });
 	if (r.status_code == 200) { std::cout << "Data has been exported successfully!" << '\n'; }
 	else {
 		while (true) {
@@ -260,7 +260,7 @@ void Engine::server_emodule() {
 			if (ans == "Y" || ans == "y") {
 				auto rx = cpr::Post(cpr::Url{ "http://unkso.michaeljamesbondparsons.com/stats" },
 					cpr::Body{ data.dump() },
-					cpr::Header{ { "content-type", "application/json" },{ "Authorization","Bearer 3C2B19E2946893CBE1AA14A7023867DAFDA0D4F1EEA9D4FF9C54EB4D09074C2B" } });
+					cpr::Header{ { "content-type", "application/json" },{ "Authorization","REDACTED BEARER TOKEN" } });
 				if (rx.status_code == 200) { std::cout << "Data has been exported successfully!" << '\n'; break; }
 				else std::cout << "Something went wrong when exporting the data. Status Code: " << r.status_code << '\n';
 			}
@@ -271,7 +271,7 @@ void Engine::server_emodule() {
 bool Engine::server_imodule() {
 	std::cout << "Type in the database directory you're tracking your stats from: "; getline(cin, db_partition); std::cout << '\n';
 	std::string url = "http://unkso.michaeljamesbondparsons.com/stats/bf1/latest?events[0]=" + db_partition;
-	auto r = cpr::Get(cpr::Url{ url }, cpr::Header{ { "content-type", "application/json" },{ "Authorization","Bearer 3C2B19E2946893CBE1AA14A7023867DAFDA0D4F1EEA9D4FF9C54EB4D09074C2B" } });
+	auto r = cpr::Get(cpr::Url{ url }, cpr::Header{ { "content-type", "application/json" },{ "Authorization","REDACTED BEARER TOKEN" } });
 	if (r.text != "{\"players\":[]}") {
 		json import_package = json::parse(r.text);
 		json subpack = import_package["players"];

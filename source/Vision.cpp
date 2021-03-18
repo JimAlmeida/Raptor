@@ -1,4 +1,5 @@
 #include "Vision.h"
+#include "utilities.cpp"
 
 using namespace Raptor;
 
@@ -25,7 +26,7 @@ Vision::Vision() : search_for_more(true), numbplrs(0) {
 	i = 0;
 	std::string url;
 	std::string logurl = "http://unkso.michaeljamesbondparsons.com/stats/bf1/latest";
-	auto r = cpr::Get(cpr::Url{ logurl }, cpr::Header{ { "content-type", "application/json" },{ "Authorization","Bearer 3C2B19E2946893CBE1AA14A7023867DAFDA0D4F1EEA9D4FF9C54EB4D09074C2B" } });
+	auto r = cpr::Get(cpr::Url{ logurl }, cpr::Header{ { "content-type", "application/json" },{ "Authorization","REDACTED BEARER TOKEN" } });
 	if (r.text != "{\"players\":[]}") {
 		json import_package = json::parse(r.text);
 		import_package = import_package["players"];

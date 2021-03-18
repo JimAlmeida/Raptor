@@ -25,12 +25,12 @@ void BF1Tracker::ReadSavedData() {
 	std::string processed_username;
 	processed_username = utilities::username_stripper(username);
 	//
-	auto r = cpr::Get(cpr::Url{ "http://unkso.michaeljamesbondparsons.com/stats/bf1/latest?players[0]=" + processed_username }, cpr::Header{ { "content-type", "application/json" },{ "Authorization","Bearer 3C2B19E2946893CBE1AA14A7023867DAFDA0D4F1EEA9D4FF9C54EB4D09074C2B" } });
+	auto r = cpr::Get(cpr::Url{ "http://unkso.michaeljamesbondparsons.com/stats/bf1/latest?players[0]=" + processed_username }, cpr::Header{ { "content-type", "application/json" },{ "Authorization","REDACTED BEARER TOKEN" } });
 	if (r.status_code == 200) {
 		if (r.text != "[]") {
 			json statpack;
 			statpack = json::parse(r.text);
-			cout << "This player's stats have been found in UNSKO Online Database" << '\n';
+			std::cout << "This player's stats have been found in UNSKO Online Database" << '\n';
 			oss = statpack[processed_username]["general"]["squadscore"];
 			orp = statpack[processed_username]["general"]["roundsplayed"];
 			osa = statpack[processed_username]["general"]["suppressionassists"];
@@ -44,11 +44,11 @@ void BF1Tracker::ReadSavedData() {
 			okills = statpack[processed_username]["general"]["kills"];
 			ohs = statpack[processed_username]["general"]["headshots"];
 			oacc = statpack[processed_username]["general"]["accuracy"];
-			cout << "===========================================================================" << '\n';
+			std::cout << "===========================================================================" << '\n';
 		}
-		else { cout << "This player has not been found in our Online Database" << '\n'; cout << "===========================================================================" << '\n'; flag = false; }
+		else { std::cout << "This player has not been found in our Online Database" << '\n'; cout << "===========================================================================" << '\n'; flag = false; }
 	}
-	else { cout << "Something went wrong when trying to establish connection to WEB API. HTTP Status CODE: " << r.status_code << '\n'; flag = false; }
+	else { std::cout << "Something went wrong when trying to establish connection to WEB API. HTTP Status CODE: " << r.status_code << '\n'; flag = false; }
 }
 void BF1Tracker::savedata() {
 	std::ofstream fout("TrackerData\\BF1\\" + username + ".txt");
@@ -179,7 +179,7 @@ void BF1Tracker::PerfIndexBF1(bool outputflag = true) {
 json BF1Tracker::exporter() {
 	// time stamp
 	time_t now = time(0);
-	string time = ctime(&now);
+	std::string time = ctime(&now);
 	// json assembling
 	json export_package;
 	export_package["lastupdate"] = time;
