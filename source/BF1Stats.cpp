@@ -1,5 +1,6 @@
 #include "BF1Stats.h"
 using namespace BF1;
+//helper for downloading stats
 BF1Stats::BF1Stats(std::string username) {
 	std::cout << "------------------------------------------------------------------------" << '\n';
 	dft_gs = new DataFetcher("https://battlefieldtracker.com/bf1/api/Stats/DetailedStats?platform=3&displayName=" + username, "TRN-Api-Key", "REDACTED API KEY");
